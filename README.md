@@ -29,6 +29,7 @@ All text lives in [`src/content.ts`](src/content.ts): experience, projects, mile
 
 ```bash
 uv run --no-project --with pillow python scripts/make_portrait.py --preview
+uv run --no-project --with pillow python scripts/make_og.py   # social preview card, public/og.png
 ```
 
 ## Deploy
