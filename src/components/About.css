@@ -1,0 +1,36 @@
+.about-row {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 28px;
+  align-items: center;
+  margin-top: 36px;
+}
+
+.about-bio {
+  margin: 10px 0 0;
+  color: #b4c4b6;
+}
+
+.about-facts {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 6px 12px;
+  margin: 18px 0 0;
+  font-size: 13px;
+}
+.about-facts dt {
+  color: var(--dim);
+}
+.about-facts dd {
+  margin: 0;
+  color: var(--muted);
+}
+.about-facts .live {
+  color: var(--green);
+}
+
+@media (max-width: 760px) {
+  .about-row {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,86 @@
+.chip-panel {
+  padding: 10px 14px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.chip-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--dim);
+}
+
+.chip-canvas {
+  display: block;
+  width: 100%;
+  max-width: 440px;
+  margin: 4px auto 0;
+  aspect-ratio: 340 / 210;
+  cursor: pointer;
+  touch-action: pan-y;
+}
+
+.chip-log {
+  min-height: 44px;
+  margin-top: 4px;
+  font-size: 13px;
+}
+.chip-log .idle {
+  color: var(--green);
+}
+.chip-log .hit {
+  color: var(--amber);
+}
+.chip-log .dev {
+  color: var(--violet-hi);
+}
+.chip-log .detail {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.firmware {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  font-size: 11px;
+  color: var(--violet-hi);
+}
+
+.fw-track {
+  flex: 1;
+  height: 7px;
+  border: 1px solid #3b2f63;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.fw-fill {
+  height: 100%;
+  background: repeating-linear-gradient(-45deg, var(--violet) 0 5px, #7c3aed 5px 10px);
+  background-size: 14px 14px;
+  box-shadow: 0 0 8px var(--violet);
+  animation: flash 0.8s linear infinite;
+}
+
+@keyframes flash {
+  to {
+    background-position: 14px 0;
+  }
+}
+
+.fw-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin-top: 2px;
+  font-size: 11px;
+  color: var(--dim);
+}
+.fw-steps b {
+  color: var(--violet);
+  font-weight: 400;
+}
