@@ -10,6 +10,9 @@ lerna-debug.log*
 node_modules
 dist
 
+# Local tool config
+.claude/
+
 # Original photo stays local; only the processed portrait.bin is published
 scripts/source/
 scripts/preview/

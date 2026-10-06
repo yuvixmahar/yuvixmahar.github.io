@@ -120,17 +120,18 @@ export const projects: Project[] = [
 ]
 
 // Career signal markers, evenly spaced left to right. `next` sits in the
-// dimmed future zone at the right edge of the scope.
-export type Milestone = { when: string; label: string; next?: boolean }
+// dimmed future zone at the right edge of the scope. Clicking a marker
+// scrolls to `target`.
+export type Milestone = { when: string; label: string; target?: string; next?: boolean }
 
 export const milestones: Milestone[] = [
-  { when: '2022', label: 'started computer engineering @ UManitoba' },
-  { when: '2024', label: 'joined UManitoba Robotics' },
-  { when: '2025', label: 'swe intern @ Quark Power' },
-  { when: '2026', label: 'built the wireless environmental monitor' },
-  { when: '2026', label: 'launched BISONplan' },
-  { when: '2026', label: 'controls intern @ Winnipeg School Division' },
-  { when: '2026', label: 'started JobRadar' },
+  { when: '2022', label: 'started computer engineering @ UManitoba', target: 'about' },
+  { when: '2024', label: 'joined UManitoba Robotics', target: 'about' },
+  { when: '2025', label: 'swe intern @ Quark Power', target: 'experience' },
+  { when: '2026', label: 'built the wireless environmental monitor', target: 'projects' },
+  { when: '2026', label: 'launched BISONplan', target: 'projects' },
+  { when: '2026', label: 'controls intern @ Winnipeg School Division', target: 'experience' },
+  { when: '2026', label: 'started JobRadar', target: 'projects' },
   { when: 'next', label: 'ai / ml · in progress', next: true },
 ]
 
