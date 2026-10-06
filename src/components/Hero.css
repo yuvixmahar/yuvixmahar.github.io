@@ -6,17 +6,6 @@
   padding: 56px 0 28px;
 }
 
-.prompt {
-  margin: 0;
-  font-size: 14px;
-}
-.arrow {
-  color: var(--green);
-}
-.tilde {
-  color: #60a5fa;
-}
-
 .hero-name {
   margin: 4px 0 0;
   font-size: clamp(38px, 7.2vw, 76px);

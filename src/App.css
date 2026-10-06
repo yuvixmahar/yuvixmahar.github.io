@@ -1,10 +1,28 @@
 .page {
   max-width: var(--page);
   margin: 0 auto;
-  padding: 0 20px 64px;
+  padding: 0 20px 40px;
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: 0 16px 32px;
+  }
 }
 
 /* Offset in-page anchors so the sticky nav doesn't cover section headings. */
 [id] {
   scroll-margin-top: 64px;
+}
+
+/* Shell prompt pieces shared by the hero, about panel, and section headings. */
+.prompt {
+  margin: 0;
+  font-size: 14px;
+}
+.arrow {
+  color: var(--green);
+}
+.tilde {
+  color: #60a5fa;
 }

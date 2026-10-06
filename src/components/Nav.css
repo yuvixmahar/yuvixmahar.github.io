@@ -68,7 +68,12 @@
 }
 
 @media (max-width: 640px) {
-  .nav-dots {
+  .nav-inner {
+    padding: 10px 16px;
+    font-size: 12px;
+  }
+  .nav-dots,
+  .nav-path {
     display: none;
   }
   .nav ul {
