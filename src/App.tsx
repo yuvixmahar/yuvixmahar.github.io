@@ -1,9 +1,14 @@
-import { profile } from './content'
+import Hero from './components/Hero'
+import Nav from './components/Nav'
+import './App.css'
 
 export default function App() {
   return (
-    <main style={{ maxWidth: 'var(--page)', margin: '0 auto', padding: '48px 20px' }}>
-      <p style={{ color: 'var(--green)' }}>booting {profile.handle}…</p>
-    </main>
+    <>
+      <Nav />
+      <main className="page" id="about">
+        <Hero />
+      </main>
+    </>
   )
 }

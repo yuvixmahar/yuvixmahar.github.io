@@ -1,0 +1,10 @@
+.page {
+  max-width: var(--page);
+  margin: 0 auto;
+  padding: 0 20px 64px;
+}
+
+/* Offset in-page anchors so the sticky nav doesn't cover section headings. */
+[id] {
+  scroll-margin-top: 64px;
+}

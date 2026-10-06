@@ -1,0 +1,185 @@
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 40px;
+  align-items: center;
+  padding: 56px 0 28px;
+}
+
+.prompt {
+  margin: 0;
+  font-size: 14px;
+}
+.arrow {
+  color: var(--green);
+}
+.tilde {
+  color: #60a5fa;
+}
+
+.hero-name {
+  margin: 4px 0 0;
+  font-size: clamp(38px, 7.2vw, 76px);
+  line-height: 1.08;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-hi);
+  white-space: nowrap;
+  text-shadow:
+    0 0 18px rgba(74, 222, 128, 0.55),
+    0 0 44px rgba(74, 222, 128, 0.22);
+  cursor: default;
+}
+
+.hero-name .noise {
+  color: var(--green);
+  opacity: 0.75;
+}
+
+.hero-name:hover {
+  animation: glitch 0.22s steps(2) infinite;
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow: 3px 0 #f472b6, -3px 0 #22d3ee;
+  }
+  50% {
+    text-shadow: -3px 1px #f472b6, 3px -1px #22d3ee;
+  }
+  100% {
+    text-shadow: 2px 0 #f472b6, -2px 0 #22d3ee;
+  }
+}
+
+.block-cursor {
+  display: inline-block;
+  width: 0.42em;
+  height: 0.82em;
+  margin-left: 0.14em;
+  vertical-align: -0.08em;
+  background: var(--green);
+  box-shadow: 0 0 14px var(--green);
+  animation: blink 1.06s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.hero-roles {
+  margin: 14px 0 0;
+  font-size: clamp(14px, 1.9vw, 17px);
+  color: #9fb3a2;
+}
+.hero-roles .sep {
+  color: var(--green);
+}
+.hero-next {
+  color: var(--violet);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.btn {
+  padding: 7px 14px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  color: var(--muted);
+  font-size: 13px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    border-color 0.2s,
+    color 0.2s,
+    box-shadow 0.2s;
+}
+
+.btn:hover,
+.btn-primary {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.btn:hover {
+  box-shadow: 0 0 14px rgba(74, 222, 128, 0.35);
+}
+
+.hero-status {
+  margin: 18px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+.hero-status .live {
+  color: var(--green);
+}
+
+/* LED portrait panel */
+.cam {
+  margin: 0;
+}
+
+.cam figcaption {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  font-size: 11px;
+  color: var(--dim);
+}
+
+.rec {
+  color: #f87171;
+  animation: blink 1.4s steps(1) infinite;
+}
+
+.cam-screen {
+  position: relative;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--bg-deep);
+}
+
+/* scanlines + vignette over the LEDs */
+.cam-screen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at center, transparent 60%, rgba(0, 0, 0, 0.55) 100%),
+    repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0 1px, transparent 1px 3px);
+}
+
+.led {
+  display: block;
+  width: 100%;
+  aspect-ratio: 220 / 240;
+  cursor: crosshair;
+  touch-action: pan-y;
+  filter: drop-shadow(0 0 3px rgba(74, 222, 128, 0.35));
+}
+
+.cam-hint {
+  margin: 6px 0 0;
+  font-size: 11px;
+  color: var(--dim);
+}
+
+@media (max-width: 760px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding-top: 36px;
+  }
+  .cam {
+    max-width: 260px;
+  }
+}
