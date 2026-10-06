@@ -1,0 +1,74 @@
+/* Phosphor-terminal palette. The site is dark by design (it's a CRT). */
+:root {
+  --bg: #0b0f0c;
+  --bg-deep: #07100a;
+  --panel: #0a110c;
+  --line: #1f3a25;
+  --line-soft: #1f2a21;
+
+  --text: #c9d1c9;
+  --text-hi: #ecfdf5;
+  --muted: #8b9a8d;
+  --dim: #5f6f61;
+
+  --green: #4ade80;
+  --green-hi: #bbf7d0;
+  --lime: #d9f99d;
+  --amber: #fbbf24;
+  --amber-hi: #fde68a;
+  --cyan: #22d3ee;
+  --violet: #a78bfa;
+  --violet-hi: #c4b5fd;
+
+  --font: 'JetBrains Mono', ui-monospace, 'Cascadia Code', Consolas, monospace;
+  --page: 1040px;
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: var(--green);
+  color: var(--bg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

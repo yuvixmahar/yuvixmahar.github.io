@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Yuvraj Singh · Resume</title>
+    <style>
+      @page {
+        size: Letter;
+        margin: 0.42in 0.5in;
+      }
+      :root {
+        --ink: #1a1a1a;
+        --soft: #4a4a4a;
+        --accent: #14532d;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        color: var(--ink);
+        font-family: Calibri, Carlito, 'Segoe UI', Arial, sans-serif;
+        font-size: 10.2pt;
+        line-height: 1.2;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      header {
+        text-align: center;
+        margin-bottom: 6pt;
+      }
+      h1 {
+        margin: 0;
+        font-size: 21pt;
+        letter-spacing: 0.06em;
+        color: var(--accent);
+      }
+      .contact {
+        margin-top: 2pt;
+        color: var(--soft);
+      }
+      .contact span + span::before {
+        content: '|';
+        margin: 0 6pt;
+        color: #9a9a9a;
+      }
+      h2 {
+        margin: 8pt 0 3pt;
+        padding-bottom: 1.5pt;
+        border-bottom: 0.8pt solid var(--accent);
+        color: var(--accent);
+        font-size: 11pt;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .entry {
+        margin-bottom: 5pt;
+        break-inside: avoid;
+      }
+      .row {
+        display: flex;
+        justify-content: space-between;
+        gap: 12pt;
+      }
+      .title {
+        font-weight: 700;
+      }
+      .sub {
+        font-style: italic;
+        color: var(--soft);
+      }
+      .stack {
+        font-weight: 400;
+        color: var(--soft);
+      }
+      ul {
+        margin: 1.5pt 0 0;
+        padding-left: 13pt;
+      }
+      li {
+        margin-bottom: 1.2pt;
+      }
+      .skills p {
+        margin: 0 0 1.5pt;
+      }
+      .skills b {
+        font-weight: 700;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>YUVRAJ SINGH</h1>
+      <div class="contact">
+        <span><a href="mailto:singhy5@myumanitoba.ca">singhy5@myumanitoba.ca</a></span>
+        <span><a href="https://www.linkedin.com/in/yuvixmahar">linkedin.com/in/yuvixmahar</a></span>
+        <span><a href="https://github.com/yuvixmahar">github.com/yuvixmahar</a></span>
+        <span><a href="https://yuvixmahar.github.io">yuvixmahar.github.io</a></span>
+      </div>
+    </header>
+
+    <h2>Education</h2>
+    <div class="entry">
+      <div class="row"><span><span class="title">University of Manitoba</span>, Winnipeg, MB <span class="sub">· B.Sc. in Computer Engineering (Co-op)</span></span><span>Expected Apr 2028</span></div>
+    </div>
+
+    <h2>Experience</h2>
+    <div class="entry">
+      <div class="row"><span><span class="title">Controls Engineer Intern</span> <span class="sub">· Winnipeg School Division</span></span><span>Jun 2026 – Aug 2026</span></div>
+      <ul>
+        <li>Restored full 4-stage cooling on a rooftop unit previously capped at 1–2 of 4 stages by rewriting a faulty GCL+ staging threshold and coordinating contractor commissioning.</li>
+        <li>Diagnosed control issues across 10 AHUs/RTUs and 4 HRVs/ERVs in 5 school buildings via live BACnet tracking in Delta Controls enteliWEB, working with the district’s Energy Management Coordinator.</li>
+        <li>Cataloged 8 sensor and logic defects across HVAC control programs in a formal issues report, driving corrective code fixes and enteliWEB graphic redesigns.</li>
+      </ul>
+    </div>
+    <div class="entry">
+      <div class="row"><span><span class="title">Software Engineer Intern</span> <span class="sub">· Quark Power Inc.</span></span><span>Sep 2025 – May 2026</span></div>
+      <ul>
+        <li>Shipped a full-stack license management platform (React/TypeScript, FastAPI, MySQL, Redis) as the sole engineer, exposing 60+ REST endpoints for provisioning, authentication, machine registration, and telemetry.</li>
+        <li>Owned the on-premise production deployment on Ubuntu Linux, configuring Nginx and systemd for long-running services, with 8 MySQL tables versioned through Alembic migrations.</li>
+        <li>Secured the API with JWT authentication and per-user/per-machine Redis rate limiting, and moved blocking email workflows to asynchronous background tasks.</li>
+      </ul>
+    </div>
+    <div class="entry">
+      <div class="row"><span><span class="title">Embedded Systems Member</span> <span class="sub">· University of Manitoba Robotics Team</span></span><span>Oct 2024 – Present</span></div>
+      <ul>
+        <li>Built an ESP32 gripper controller for a 6-DoF robotic arm that filters CAN frames by message ID, decodes the commanded angle, and drives a servo in real time; integrated a third-party CAN library after vetting it against the transceiver.</li>
+        <li>Wrote a ROS2 C++ publisher node for a BNO055 IMU over I2C that publishes timestamped orientation, gyroscope, and acceleration data for sensor fusion and navigation.</li>
+      </ul>
+    </div>
+
+    <h2>Projects</h2>
+    <div class="entry">
+      <div class="row">
+        <span><span class="title">Wireless Environmental Monitor</span> <span class="stack">| Raspberry Pi Pico 2 W, MicroPython, I2C</span></span><span>May 2026</span>
+      </div>
+      <ul>
+        <li>Built a standalone sensor node on a Raspberry Pi Pico 2 W (RP2350, Arm Cortex-M33) that reads a DHT11 temperature/humidity sensor and shows live readings on a 16×2 LCD over I2C.</li>
+        <li>Ran an HTTP server on the microcontroller over Wi-Fi, sharing a single event loop with sensor polling and LCD updates, to serve a live dashboard to any browser on the network with no host machine.</li>
+      </ul>
+    </div>
+    <div class="entry">
+      <div class="row">
+        <span><span class="title">BISONplan</span> <span class="stack">| <a href="https://bisonplan.vercel.app">bisonplan.vercel.app</a> | Python, FastAPI, React, Docker, GitHub Actions</span></span><span>May 2026 – Present</span>
+      </div>
+      <ul>
+        <li>Launched a course-planning platform for University of Manitoba students that reached 450+ users, 2,000+ page views, and 50k+ API requests in its first month.</li>
+        <li>Proxied the university’s Aurora (Banner SSB) registration system live instead of mirroring stale data, falling back to age-stamped cached results with freshness banners during upstream outages.</li>
+        <li>Guarded schedule correctness with interval-overlap and date-range conflict detection, backed by 170+ automated tests across a 6-job CI pipeline.</li>
+      </ul>
+    </div>
+    <div class="entry">
+      <div class="row">
+        <span><span class="title">JobRadar</span> <span class="stack">| <a href="https://github.com/yuvixmahar/job-radar">github.com/yuvixmahar/job-radar</a> | Python, asyncio, httpx, SQLite, Pydantic</span></span><span>Jul 2026 – Present</span>
+      </div>
+      <ul>
+        <li>Built a job-posting monitor with one adapter per ATS platform, not per company (8 integrations incl. Workday, Greenhouse, Lever), loaded as entry-point plugins behind JobSource/Notifier interfaces.</li>
+        <li>Fetched all sources concurrently with asyncio under a semaphore cap so one failing source can’t break a run, and deduplicated postings with a SQLite primary key and one batched INSERT OR IGNORE per poll.</li>
+        <li>Maintained 95% coverage across 230 tests under strict mypy with fully mocked HTTP; boundary-aware matching keeps C, C++, C#, and .NET distinct.</li>
+      </ul>
+    </div>
+
+    <h2>Skills</h2>
+    <div class="skills">
+      <p><b>Languages:</b> C, C++, Python, TypeScript, JavaScript, SQL, Bash, Java</p>
+      <p><b>Embedded:</b> ESP32, STM32 (HAL), RP2350 (Pico 2 W), Arduino, MicroPython, CAN bus, I2C, UART, SPI, PWM, ROS2</p>
+      <p><b>Backend &amp; Web:</b> FastAPI, REST, JWT, SQLAlchemy, Alembic, asyncio, httpx, Pydantic, React, Vite, Tailwind CSS</p>
+      <p><b>Data &amp; Infrastructure:</b> MySQL, PostgreSQL, SQLite, Redis, Docker, Linux (Ubuntu), Nginx, systemd, GitHub Actions, Cloudflare</p>
+      <p><b>Controls &amp; Tools:</b> BACnet, Delta Controls enteliWEB, GCL+, Git, pytest, Vitest, mypy; currently learning NumPy and pandas</p>
+    </div>
+  </body>
+</html>
