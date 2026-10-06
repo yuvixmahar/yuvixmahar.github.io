@@ -14,8 +14,9 @@ export const profile = {
     end: 'expected Apr 2028',
   },
   bio:
-    "Computer engineering student at the University of Manitoba. I like software that touches hardware: " +
-    'firmware on microcontrollers, and the backends and tools around them.',
+    'Computer engineering student at the University of Manitoba, focused on software engineering: ' +
+    "backends, APIs, and the tools around them. On the side I enjoy embedded work, like ESP32 firmware for the " +
+    'university robotics team and small sensor projects.',
   links: {
     github: 'https://github.com/yuvixmahar',
     linkedin: 'https://www.linkedin.com/in/yuvixmahar',

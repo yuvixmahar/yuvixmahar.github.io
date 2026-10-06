@@ -11,8 +11,8 @@ export default function Contact() {
     <footer className="section contact" aria-labelledby="contact">
       <SectionHead id="contact" command="./contact.sh" />
       <p className="contact-lead">
-        Seeking a <span className="hl">Summer 2027 co-op</span> in software or embedded systems. If you're building
-        something that touches hardware, I'd love to hear about it.
+        Seeking a <span className="hl">Summer 2027 software engineering co-op</span>, ideally backend or full-stack.
+        Teams that work close to hardware are a bonus. My inbox is open.
       </p>
       <div className="contact-links">
         <a className="btn btn-primary" href={`mailto:${links.email}`}>
