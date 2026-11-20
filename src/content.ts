@@ -62,8 +62,32 @@ export const experience: Experience[] = [
   },
 ]
 
+// A screenshot or clip on a project page. Leave `src` out to show a
+// placeholder frame; once the file is in public/projects/<slug>/, set `src`
+// to its path relative to public/ (e.g. 'projects/bisonplan/search.png').
+// For a video, `start` (seconds) skips an intro such as a sign-in or disclaimer.
+export type Media = { kind?: 'image' | 'video'; src?: string; start?: number; alt: string; caption: string }
+
+// One box in a block diagram; `external` draws it dashed (a system I don't own).
+export type FlowNode = { title: string; detail: string; external?: boolean }
+
+export type ProjectDetail = {
+  problem: string[]
+  features: string[]
+  // Boxes left to right, with one label per arrow between them.
+  flow?: { nodes: FlowNode[]; edges: string[]; footnote?: string }
+  media: Media[]
+  stack: { name: string; why: string }[]
+  role: string
+  challenges: { title: string; body: string }[]
+  results: string[]
+  next?: string[]
+}
+
 export type Project = {
   name: string
+  // URL piece for the project page: #/projects/<slug>
+  slug: string
   tagline: string
   dates: string
   kind: 'embedded' | 'software'
@@ -71,11 +95,14 @@ export type Project = {
   bullets: string[]
   tags: string[]
   links: { label: string; href: string }[]
+  // Present = the card links to a full project page.
+  detail?: ProjectDetail
 }
 
 export const projects: Project[] = [
   {
     name: 'Wireless Environmental Monitor',
+    slug: 'wireless-environmental-monitor',
     tagline: 'A standalone sensor node that serves its own live dashboard over Wi-Fi. No host computer.',
     dates: 'May 2026',
     kind: 'embedded',
@@ -89,10 +116,11 @@ export const projects: Project[] = [
   },
   {
     name: 'BISONplan',
+    slug: 'bisonplan',
     tagline: 'A course planner for UManitoba students, built on live registration data.',
     dates: 'May 2026 – Present',
     kind: 'software',
-    stats: ['450+ users', '50k+ API requests', 'month one'],
+    stats: ['500+ users', '2k+ page views', '50k+ requests in month one'],
     bullets: [
       "Proxies the university's Aurora (Banner SSB) registration system live instead of mirroring stale data.",
       'Stays usable during upstream outages by serving age-stamped cached results behind freshness banners.',
@@ -103,9 +131,101 @@ export const projects: Project[] = [
       { label: 'live site', href: 'https://bisonplan.vercel.app' },
       { label: 'github', href: 'https://github.com/yuvixmahar/BISONPlan' },
     ],
+    detail: {
+      problem: [
+        "Planning a term at the University of Manitoba means working in Aurora, the university's registration system. " +
+          'It is slow to search, awkward for comparing sections, and has no way to sketch a weekly schedule before you register.',
+        'Tools that copy the course catalogue once go stale, so their seat counts and waitlists are wrong exactly when students need them: during registration.',
+      ],
+      features: [
+        'Searches live Aurora data: terms, subjects, sections, seats, and waitlists.',
+        'Filters by credits, course level, campus, delivery mode, schedule type, day, time, and instructor.',
+        'Shows open / waitlist / full seat badges, plus a quick-view drawer with times, rooms, instructors, and notes.',
+        "Loads prerequisites on demand in Aurora's own wording, so nothing gets paraphrased wrong.",
+        'Adds any section to a Fall, Winter, or Summer planner and lays it out on a weekly grid.',
+        'Blocks a section that clashes with one already in the planner, before it is added.',
+        "Saves the planner in the browser and exports a term's schedule as a text file.",
+      ],
+      flow: {
+        nodes: [
+          { title: 'React frontend', detail: 'search, filters, weekly planner · Vercel' },
+          { title: 'FastAPI backend', detail: 'Docker on Railway · per-IP rate limit' },
+          { title: 'shared cache', detail: 'one entry per course + term · 5, 10, or 60 min' },
+          { title: 'Aurora (Banner SSB)', detail: "UManitoba's registration system", external: true },
+        ],
+        edges: ['REST / JSON', 'check first', 'only on a miss'],
+        footnote:
+          'If Aurora errors or times out, the API returns the last cached copy marked stale with its timestamp, and the UI shows a freshness banner.',
+      },
+      media: [
+        {
+          kind: 'video',
+          src: 'projects/bisonplan/demo.mp4',
+          start: 3, // skip BISONplan's disclaimer modal
+          alt: 'Demo of searching for a course and adding it to the weekly planner',
+          caption: 'demo · search → planner',
+        },
+        {
+          src: 'projects/bisonplan/search.png',
+          alt: 'Course search for Winter 2027 COMP courses, filtered by level, credits, campus, day, and time, showing a section with a limited-seats badge',
+          caption: 'course search · filters + live seat counts',
+        },
+        {
+          src: 'projects/bisonplan/planner.png',
+          alt: 'Weekly planner showing COMP 2400, COMP 2140, and MATH 1240 laid out on a Monday to Sunday grid',
+          caption: 'weekly planner · week-by-week calendar grid',
+        },
+      ],
+      stack: [
+        { name: 'Python · FastAPI', why: 'async API that proxies Aurora, with httpx for the upstream calls' },
+        { name: 'React · Vite · Tailwind', why: 'the search UI and the weekly planner' },
+        { name: 'TTL cache', why: 'shared per course and term, so repeat searches never reach Aurora' },
+        { name: 'slowapi', why: 'per-IP rate limiting, so one client cannot turn into load on the university' },
+        { name: 'Docker · Railway · Vercel', why: 'backend container on Railway, frontend on Vercel' },
+        { name: 'pytest · Vitest · Playwright', why: 'unit tests on both sides plus end-to-end browser tests' },
+        {
+          name: 'GitHub Actions',
+          why: '6 CI jobs on every push: lint, tests, build, e2e, npm audit, Docker image build',
+        },
+      ],
+      role: 'Solo project. I designed it, built the backend and frontend, set up CI and deployment, and run it in production.',
+      challenges: [
+        {
+          title: 'Being a good guest on university servers',
+          body:
+            'BISONplan never polls or scrapes Aurora on a timer. It fetches only when a student searches, and caches each course and term for everyone, ' +
+            'so 50 students opening COMP 1010 in the same window cause one Aurora request. The cache window drops to 5 minutes during add/drop, ' +
+            'stretches to 60 once schedules are locked, and lengthens overnight. Every request carries a User-Agent that names the project and gives a contact address.',
+        },
+        {
+          title: 'Staying up when Aurora is down',
+          body:
+            'When Aurora times out or errors, the API answers with the last cached copy, marked stale with the time it was fetched. ' +
+            'The UI shows a freshness banner instead of an error page, so students can keep planning.',
+        },
+        {
+          title: 'Getting conflicts right',
+          body:
+            'A section can meet several times a week, and summer courses run in different date ranges. ' +
+            'The planner flags overlapping meeting times on the same day only when the two date ranges also overlap, ' +
+            'so two half-term summer courses in the same time slot are allowed.',
+        },
+      ],
+      results: [
+        '500+ users and 2,000+ page views since launch.',
+        '50k+ API requests in the first month.',
+        '170+ automated tests across backend, frontend, and end-to-end, run by 6 CI jobs on every push.',
+      ],
+      next: [
+        'Collapse simultaneous cache misses for the same course into one Aurora call (a lock per cache key).',
+        'Move the cache to Redis so the API can run on more than one worker.',
+        'Report the cache hit rate on the health endpoint, to measure how much Aurora traffic it saves.',
+      ],
+    },
   },
   {
     name: 'JobRadar',
+    slug: 'jobradar',
     tagline: 'Watches company career sites and notifies you when a matching job is posted.',
     dates: 'Jul 2026 – Present',
     kind: 'software',

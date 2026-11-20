@@ -1,8 +1,7 @@
 import { projects } from '../content'
+import { projectHref } from '../lib/route'
 import SectionHead from './SectionHead'
 import './Sections.css'
-
-const slug = (name: string) => name.toLowerCase().replace(/\s+/g, '-')
 
 export default function Projects() {
   return (
@@ -15,7 +14,7 @@ export default function Projects() {
               drwxr-xr-x <span className="kind">{p.kind}</span>
             </p>
             <h3>
-              {slug(p.name)}
+              {p.slug}
               <span className="slash">/</span>
             </h3>
             <p className="project-name">
@@ -40,15 +39,17 @@ export default function Projects() {
               ))}
             </ul>
             <div className="project-links">
-              {p.links.length ? (
-                p.links.map((l) => (
-                  <a key={l.href} className="btn" href={l.href} target="_blank" rel="noreferrer">
-                    {l.label} ↗
-                  </a>
-                ))
-              ) : (
-                <span className="soon">// write-up coming soon</span>
+              {p.detail && (
+                <a className="btn btn-primary" href={projectHref(p.slug)}>
+                  cat README.md →
+                </a>
               )}
+              {p.links.map((l) => (
+                <a key={l.href} className="btn" href={l.href} target="_blank" rel="noreferrer">
+                  {l.label} ↗
+                </a>
+              ))}
+              {!p.detail && !p.links.length && <span className="soon">// write-up coming soon</span>}
             </div>
           </article>
         ))}

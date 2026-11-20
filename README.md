@@ -22,6 +22,10 @@ npm run resume    # render resume/resume.html to public/Yuvraj_Singh_Resume.pdf 
 
 All text lives in [`src/content.ts`](src/content.ts): experience, projects, milestones, and chip pins.
 
+A project with a `detail` entry gets its own page at `#/projects/<slug>` (problem, features, block diagram,
+media, stack, role, challenges, results). Screenshots and clips go in `public/projects/<slug>/`; a media item
+without `src` shows a placeholder frame until the file is added.
+
 ## Portrait
 
 `public/portrait.bin` is a 220×240 grid of brightness values, generated from a photo by
