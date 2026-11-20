@@ -9,7 +9,7 @@ export default function Projects() {
       <SectionHead id="projects" command="ls -la projects/" />
       <div className="projects">
         {projects.map((p) => (
-          <article className={`project ${p.kind}`} key={p.name}>
+          <article className={`project ${p.kind}${p.detail ? ' has-page' : ''}`} key={p.name}>
             <p className="perm">
               drwxr-xr-x <span className="kind">{p.kind}</span>
             </p>
@@ -40,7 +40,8 @@ export default function Projects() {
             </ul>
             <div className="project-links">
               {p.detail && (
-                <a className="btn btn-primary" href={projectHref(p.slug)}>
+                // .card-link stretches over the whole card (see Sections.css).
+                <a className="btn btn-primary card-link" href={projectHref(p.slug)}>
                   cat README.md →
                 </a>
               )}

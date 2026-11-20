@@ -211,6 +211,27 @@
   font-size: 12px;
   padding: 4px 12px;
 }
+
+/* Cards with a project page: the whole card opens it. The README link's
+   ::after covers the card, and the other links sit above that layer. */
+.project.has-page {
+  position: relative;
+  cursor: pointer;
+}
+.project.has-page .card-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+}
+.project.has-page .project-links a:not(.card-link) {
+  position: relative;
+  z-index: 1;
+}
+.project.has-page:has(.card-link:focus-visible) {
+  border-color: var(--green);
+  box-shadow: 0 0 22px rgba(74, 222, 128, 0.12);
+}
 .soon {
   font-size: 12px;
   color: var(--dim);

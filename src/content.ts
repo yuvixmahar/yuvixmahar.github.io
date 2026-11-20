@@ -216,11 +216,6 @@ export const projects: Project[] = [
         '50k+ API requests in the first month.',
         '170+ automated tests across backend, frontend, and end-to-end, run by 6 CI jobs on every push.',
       ],
-      next: [
-        'Collapse simultaneous cache misses for the same course into one Aurora call (a lock per cache key).',
-        'Move the cache to Redis so the API can run on more than one worker.',
-        'Report the cache hit rate on the health endpoint, to measure how much Aurora traffic it saves.',
-      ],
     },
   },
   {
@@ -229,9 +224,9 @@ export const projects: Project[] = [
     tagline: 'Watches company career sites and notifies you when a matching job is posted.',
     dates: 'Jul 2026 – Present',
     kind: 'software',
-    stats: ['8 ATS adapters', '230 tests', '95% coverage'],
+    stats: ['10 job sources', '230 tests', '95% coverage'],
     bullets: [
-      'One adapter per ATS platform, not per company: Workday, Greenhouse, Lever, Ashby, SmartRecruiters, Recruitee, Breezy, and Workable, all plugins behind JobSource/Notifier interfaces.',
+      "One adapter per platform, not per company: Workday, Greenhouse, Lever, Ashby, SmartRecruiters, Recruitee, Breezy, and Workable, plus Amazon's and AMD's own career sites. All are plugins behind JobSource/Notifier interfaces.",
       'Fetches every source concurrently with asyncio under a semaphore cap, so one failing source never sinks a run.',
       'Deduplicates postings with a SQLite primary key and one batched INSERT OR IGNORE per poll; strict mypy and fully mocked HTTP in tests.',
     ],

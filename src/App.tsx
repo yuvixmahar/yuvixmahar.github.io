@@ -12,7 +12,10 @@ import { profile, projects } from './content'
 import { projectFromHash, useHash } from './lib/route'
 import './App.css'
 
-const HOME_TITLE = document.title
+// og:title matches the home <title> and is never changed at runtime, so it is
+// a safe source even if this module re-runs while a project page is open.
+const HOME_TITLE =
+  document.querySelector<HTMLMetaElement>('meta[property="og:title"]')?.content ?? document.title
 
 export default function App() {
   // Name of the chip pin being hovered; the scope decodes it on CH2.
